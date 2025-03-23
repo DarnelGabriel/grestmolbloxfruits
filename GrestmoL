@@ -6,13 +6,9 @@ function bind.new(title)
 	local Frame = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
 	local UIStroke = Instance.new("UIStroke")
-	local ImageLabel = Instance.new("ImageLabel")
 	local TextLabel = Instance.new("TextLabel")
-	local TextBox = Instance.new("TextBox")
+	local ExecuteButton = Instance.new("TextButton")
 	local UICorner_2 = Instance.new("UICorner")
-	local UIStroke_2 = Instance.new("UIStroke")
-	local Buttons = Instance.new("Frame")
-	local UIListLayout = Instance.new("UIListLayout")
 
 	ScreenGui.Parent = game:FindFirstChild('CoreGui') or game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	ScreenGui.ResetOnSpawn = false
@@ -22,15 +18,9 @@ function bind.new(title)
 	Frame.Parent = ScreenGui
 	Frame.AnchorPoint = Vector2.new(0.5, 0.5)
 	Frame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-	Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Frame.BorderSizePixel = 0
 	Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-	Frame.Size = UDim2.new(0, 0, 0, 0)
+	Frame.Size = UDim2.new(0, 250, 0, 150)
 	Frame.ClipsDescendants = true
-	
-	game:GetService('TweenService'):Create(Frame, TweenInfo.new(1.5, Enum.EasingStyle.Quint, Enum.EasingDirection.InOut), {
-		Size = UDim2.new(0, 250, 0, 150)
-	}):Play()
 	
 	UICorner.Parent = Frame
 
@@ -38,32 +28,8 @@ function bind.new(title)
 	UIStroke.Color = Color3.fromRGB(111, 111, 111)
 	UIStroke.Transparency = 0.800
 
-	ImageLabel.Parent = Frame
-	ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-	ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	ImageLabel.BackgroundTransparency = 1.000
-	ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	ImageLabel.BorderSizePixel = 0
-	ImageLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
-	ImageLabel.Size = UDim2.new(1, 47, 1, 47)
-	ImageLabel.ZIndex = -1
-	ImageLabel.Image = "rbxassetid://6015897843"
-	ImageLabel.ImageColor3 = Color3.fromRGB(0, 0, 0)
-	ImageLabel.ImageTransparency = 1
-	ImageLabel.ScaleType = Enum.ScaleType.Slice
-	ImageLabel.SliceCenter = Rect.new(49, 49, 450, 450)
-	ImageLabel.Rotation = 0.0001;
-	
-	game:GetService('TweenService'):Create(ImageLabel, TweenInfo.new(1.5, Enum.EasingStyle.Quint, Enum.EasingDirection.InOut), {
-		ImageTransparency = 0.500
-	}):Play()
-	
 	TextLabel.Parent = Frame
 	TextLabel.AnchorPoint = Vector2.new(0.5, 0)
-	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel.BackgroundTransparency = 1.000
-	TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	TextLabel.BorderSizePixel = 0
 	TextLabel.Position = UDim2.new(0.5, 0, 0, 10)
 	TextLabel.Size = UDim2.new(1, -20, 0, 15)
 	TextLabel.Font = Enum.Font.GothamMedium
@@ -71,10 +37,23 @@ function bind.new(title)
 	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	TextLabel.TextSize = 14.000
 
-	TextBox.Parent = Frame
-	TextBox.AnchorPoint = Vector2.new(0.5, 0)
-	TextBox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-	TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	-- Botón para ejecutar el script
+	ExecuteButton.Parent = Frame
+	ExecuteButton.AnchorPoint = Vector2.new(0.5, 1)
+	ExecuteButton.Position = UDim2.new(0.5, 0, 1, -20)
+	ExecuteButton.Size = UDim2.new(0, 100, 0, 30)
+	ExecuteButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	ExecuteButton.Font = Enum.Font.Gotham
+	ExecuteButton.Text = "Ejecutar Script"
+	ExecuteButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ExecuteButton.TextSize = 14
+
+	UICorner_2.Parent = ExecuteButton
+
+	-- Acción del botón
+	ExecuteButton.MouseButton1Click:Connect(function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/DarnelGabriel/grestmolbloxfruits/refs/heads/main/GrestmoL"))()
+	end)
 
 	return bind
 end
